@@ -1,0 +1,21 @@
+.MainContainer {
+
+
+    ul {
+        margin-top: 200px;
+        list-style: none;
+    }
+
+    li {
+        position: relative
+    }
+}
+
+.float {
+    animation: float 10s linear forwards
+}
+
+@keyframes float {
+    from {top: 0px;}
+    to {top: -1000px;}
+}
