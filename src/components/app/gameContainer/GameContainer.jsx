@@ -43,9 +43,9 @@ export default function GameContainer() {
         }
 
         return {
+            ...prevPos,
             x: prevPos.x + (dx / speed),
             y: prevPos.y + (dy / speed),
-            radius: prevPos.radius
         };
     }
 
@@ -59,10 +59,10 @@ export default function GameContainer() {
     useEffect(() => {
         document.addEventListener('keydown', ({ key }) => {
             switch (key) {
-                case 'ArrowRight': setPos(pos => ({ x: pos.x + step, y: pos.y, radius: pos.radius })); break;
-                case 'ArrowLeft': setPos(pos => ({ x: pos.x - step, y: pos.y, radius: pos.radius })); break;
-                case 'ArrowUp': setPos(pos => ({ x: pos.x, y: pos.y - step, radius: pos.radius })); break;
-                case 'ArrowDown': setPos(pos => ({ x: pos.x, y: pos.y + step, radius: pos.radius })); break;
+                case 'ArrowRight': setPos(pos => ({ ...pos, x: pos.x + step, y: pos.y })); break;
+                case 'ArrowLeft': setPos(pos => ({ ...pos, x: pos.x - step, y: pos.y, radius: pos.radius })); break;
+                case 'ArrowUp': setPos(pos => ({ ...pos, x: pos.x, y: pos.y - step, radius: pos.radius })); break;
+                case 'ArrowDown': setPos(pos => ({ ...pos, x: pos.x, y: pos.y + step, radius: pos.radius })); break;
                 default: return;
             }
         });
