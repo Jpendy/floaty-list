@@ -10,25 +10,27 @@ export default function GameContainer() {
         hero: { radius: 10, x: 300, y: 200 },
         e1: { radius: 10, x: 10, y: 10 },
         e2: { radius: 10, x: 800, y: 10 },
-        e3: { radius: 10, x: 800, y: 400 },
-        e4: { radius: 10, x: 10, y: 400 }
+        e3: { radius: 14, x: 800, y: 400 },
+        e4: { radius: 30, x: 10, y: 400 }
     };
 
-    const [pos, setPos] = useState(startingPos.hero);
+    const { hero, e1, e2, e3, e4 } = startingPos;
 
-    const [enemyPos, setEnemyPos] = useState(startingPos.e1);
-    const [enemy2Pos, setEnemy2Pos] = useState(startingPos.e2);
-    const [enemy3Pos, setEnemy3Pos] = useState(startingPos.e3);
-    const [enemy4Pos, setEnemy4Pos] = useState(startingPos.e4);
+    const [pos, setPos] = useState(hero);
+
+    const [enemyPos, setEnemyPos] = useState(e1);
+    const [enemy2Pos, setEnemy2Pos] = useState(e2);
+    const [enemy3Pos, setEnemy3Pos] = useState(e3);
+    const [enemy4Pos, setEnemy4Pos] = useState(e4);
 
     const step = 8;
 
     function reset() {
-        setPos(startingPos.hero);
-        setEnemyPos(startingPos.e1);
-        setEnemy2Pos(startingPos.e2);
-        setEnemy3Pos(startingPos.e3);
-        setEnemy4Pos(startingPos.e4);
+        setPos(hero);
+        setEnemyPos(e1);
+        setEnemy2Pos(e2);
+        setEnemy3Pos(e3);
+        setEnemy4Pos(e4);
     }
 
     function persuit(prevPos, speed) {
@@ -51,9 +53,9 @@ export default function GameContainer() {
 
     useInterval(() => {
         setEnemyPos(pos => persuit(pos, 8));
-        setEnemy2Pos(pos => persuit(pos, 17));
-        setEnemy3Pos(pos => persuit(pos, 25));
-        setEnemy4Pos(pos => persuit(pos, 12));
+        setEnemy2Pos(pos => persuit(pos, 12));
+        setEnemy3Pos(pos => persuit(pos, 17));
+        setEnemy4Pos(pos => persuit(pos, 25));
     }, 100);
 
     useEffect(() => {
@@ -101,6 +103,8 @@ export default function GameContainer() {
 
     const enemy3Style = {
         ...enemy,
+        width: '40px',
+        height: '40px',
         top: enemy3Pos.y,
         left: enemy3Pos.x,
         backgroundColor: 'purple'
@@ -108,6 +112,8 @@ export default function GameContainer() {
 
     const enemy4Style = {
         ...enemy,
+        width: '60px',
+        height: '60px',
         top: enemy4Pos.y,
         left: enemy4Pos.x,
         backgroundColor: 'yellow'
