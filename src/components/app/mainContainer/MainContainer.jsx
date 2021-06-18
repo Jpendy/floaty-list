@@ -10,7 +10,13 @@ export default function MainContainer() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setList(list => [...list, message]);
+        setList(list => {
+            const newList = [...list];
+
+            if (newList.length > 4) newList.shift();
+
+            return [...newList, message];
+        });
         setMessage('');
     };
 
